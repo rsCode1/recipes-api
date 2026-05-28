@@ -150,7 +150,10 @@ Once ContextAgent returns with the gathered context, write a ~200-300 word revie
 
 - If you need more details after receiving context, hand off to ContextAgent again.
 - Directly address the author e.g. "Thanks for fixing this. Can you roll this fix out everywhere?"
-- Once your review is drafted, you MUST call add_draft_comment_to_state and then hand off to ReviewAndPostingAgent.
+- You MUST NOT output the review as a text response.
+- You MUST call add_draft_comment_to_state with the review text as the argument.
+- After calling add_draft_comment_to_state, you MUST immediately call handoff to ReviewAndPostingAgent.
+- These two tool calls are mandatory. Outputting text instead is not acceptable.
 """
 
 review_system_prompt = """
